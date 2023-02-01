@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_product_form_inherit_view" model="ir.ui.view">
+        <field name="name">view.product.template.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view" />
+        <field name="arch" type="xml">
+        <notebook>
+            <page string="Eccomerce Configurations">
+                <group>
+                    <group>
+                        <field name='is_popular' />
+                        <field name='is_new_arrival' />
+                        <field name='is_best_sale' />
+                    </group>
+                    <group>
+                        <field name='is_trending' />
+                        <field name='is_limited_offer' />
+                        <field name='discounted_amt'
+                            attrs="{'invisible':[('is_limited_offer', '!=', True)]}" /> 
+                    </group>
+                </group>
+            </page>
+        </notebook>
+        </field>
+    </record>
+    <record id="view_product_category_form_inherit_view" model="ir.ui.view">
+        <field name="name">view.product.category.tree</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='first']" position="after">
+                <group name="first">
+                    <field name="is_active" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
