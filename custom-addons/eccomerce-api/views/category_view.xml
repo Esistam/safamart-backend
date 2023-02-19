@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="category_test_form_view">
+            <field name="name">category.test</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view" />
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <group name="first" string="Category Test">
+                        <field name="store_fname" invisible="1" />
+                        <field name="attachment" filename="store_fname" widget="image"
+                            style="width:100px;height:100px;" />
+                        <field name="is_advert" />
+                        <field name="description" />
+                        <field name="title" />
+                        <field name="is_offer" />
+                        <field name="offer_value" attrs="{'required':[('is_offer','=',True)], 'invisible':[('is_offer','=',True)]}"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="template_test_form_view">
+            <field name="name">category.template.inheit</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view" />
+            <field name="arch" type="xml">
+                <field name="detailed_type" position="after">
+                    <group name="first" string="Category Test">
+                        <field name="is_advert" />
+                    </group>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
