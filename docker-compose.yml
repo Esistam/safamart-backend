@@ -13,7 +13,7 @@ services:
         volumes:
                 - db-data:/var/lib/postgresql/data/pgdata
         networks:
-                - kadweka
+                - safamart
    odoo:
         image: odoo:15.0
         restart: always
@@ -29,22 +29,23 @@ services:
                 - ./custom-addons:/mnt/custom-addons
                 - odoo-data:/var/lib/odoo
         networks:
-                - kadweka
+                - safamart
+   nginx:
+        image: nginx:latest
+        ports:
+                - 8011:80
+                - 443:443
+        restart: always
+        depends_on:
+                - odoo
+        volumes:
+                # - ./nginx/sites-enabled/:/etc/nginx/sites-enabled/
+                - ./nginx/sites-available/:/etc/nginx/sites-available/
+                # - /etc/letsencrypt:/etc/letsencrypt:ro
+        networks:
+                - safamart
 volumes:
         odoo-data:
         db-data:
 networks:
-        kadweka:
-#    nginx:
-#         image: nginx:latest
-#         ports:
-#                 - 80:80
-#                 - 443:443
-#         restart: always
-#         depends_on:
-#                 - odoo
-#         volumes:
-#                 - ./nginx/sites-enabled/:/etc/nginx/conf.d:ro
-#                 # - /etc/letsencrypt:/etc/letsencrypt:ro
-#         networks:
-#                 - kadweka
+        safamart:
