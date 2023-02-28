@@ -30,18 +30,18 @@ services:
                 - odoo-data:/var/lib/odoo
         networks:
                 - safamart
-   nginx:
-        image: nginx:latest
-        ports:
-                - 8011:80
-                - 443:443
-        restart: always
-        depends_on:
-                - odoo
-        volumes:
-                - ./nginx/sites-available/:/etc/nginx/sites-available/
-        networks:
-                - safamart
+#    nginx:
+#         image: nginx:latest
+#         ports:
+#                 - 8011:80
+#                 - 443:443
+#         restart: always
+#         depends_on:
+#                 - odoo
+#         volumes:
+#                 - ./nginx/sites-available/:/etc/nginx/sites-available/
+#         networks:
+#                 - safamart
 volumes:
         odoo-data:
         db-data:

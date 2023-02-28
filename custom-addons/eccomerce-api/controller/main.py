@@ -17,8 +17,7 @@ class MainController(http.Controller):
     def view__category_propducts(self, **kw):
         payload = json.loads(request.httprequest.data)
         data = []
-                # domain=["|",("categ_id", "=",payload["category_id"]),("name", "ilike",payload['name'])]
-        product = request.env['product.template'].sudo().search(["&",("categ_id.id",'=',payload['category_id']),("name",'ilike',payload['name'])], limit=8)
+        product = request.env['product.template'].sudo().search(["&",("categ_id.id",'=',payload['category_id']),("name",'ilike',payload['name'])], limit=12)
         [data.append({"productName": x.name,"productId": x.id,"productPrice": x.list_price,"productCategory": x.categ_id.name,"productImage": x.image_1920,"productDescription": x.description})for x in product]
         response = data
         return response
@@ -35,8 +34,8 @@ class MainController(http.Controller):
         payload = json.loads(request.httprequest.data)
         data1 = []
         data2 = []
-        product = request.env['product.template'].sudo().search(["&",("is_advert","=",False),('sale_ok', "=", True),("name","ilike",payload["name"])],limit=24)
-        product2 = request.env['product.template'].sudo().search(["&",("is_advert","=",True),('sale_ok', "=", True),("name","ilike",payload["name"])],limit=24)
+        product = request.env['product.template'].sudo().search(["&",("is_advert","=",False),('sale_ok', "=", True),("name","ilike",payload["name"])],limit=12)
+        product2 = request.env['product.template'].sudo().search(["&",("is_advert","=",True),('sale_ok', "=", True),("name","ilike",payload["name"])],limit=12)
         [data1.append({"productName": x.name,"productId": x.id,"productPrice": x.list_price,"productCategory": x.categ_id.name,"productImage": x.image_1920,"productDescription": x.description})for x in product]
         [data2.append({"productName": x.name,"productId": x.id,"productPrice": x.list_price,"productCategory": x.categ_id.name,"productImage": x.image_1920,"productDescription": x.description})for x in product2]
         response = {
@@ -53,7 +52,7 @@ class MainController(http.Controller):
         payload = json.loads(request.httprequest.data)
         data = []
         domain=["|",("sale_ok", "=",True),("name", "ilike",payload['name'])]
-        product = request.env['product.template'].sudo().search(domain, limit=20)
+        product = request.env['product.template'].sudo().search(domain, limit=12)
         [data.append({"productName": x.name,"productId": x.id,"productPrice": x.list_price,"productCategory": x.categ_id.name,"productImage": x.image_1920,"productDescription": x.description})for x in product]
         response = data
         return response
