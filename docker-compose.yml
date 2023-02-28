@@ -39,9 +39,7 @@ services:
         depends_on:
                 - odoo
         volumes:
-                # - ./nginx/sites-enabled/:/etc/nginx/sites-enabled/
                 - ./nginx/sites-available/:/etc/nginx/sites-available/
-                # - /etc/letsencrypt:/etc/letsencrypt:ro
         networks:
                 - safamart
 volumes:
