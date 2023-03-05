@@ -9,7 +9,7 @@
     'summary': "Eccomerce Api",
     'description': """""",
     'license':'LGPL-3',
-    'depends': ['base','mail','product'],
+    'depends': ['base','mail','sale','product'],
     'data': [
         'security/ir.model.access.csv',
         "views/category_view.xml"
